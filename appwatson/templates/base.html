@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>App Cognitive</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dropdown.css' %}" rel="stylesheet">
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet">
+  </head>
+
+  <body>
+     <header>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                        <span class="oi oi-cloud"></span>
+                        AppCognitive
+                    </a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="{% url 'understanding' %}">NLU Understanding</a></li>
+                      <li><a class="dropdown-item" href="{%url 'translator' %}">Translator</a></li>
+                      <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Visual Recognition</a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'detecta_faces' %}">Detecta Faces</a></li>
+                          <li><a class="dropdown-item" href="{% url 'detecta_objetos' %}">Detecta Objectos</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Entre em contato</a>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+        </nav>
+     </header>
+     <aside>
+        <div class="container">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+     </aside>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted text-center"> Tenha um feliz {% now "Y" %} </p>
+      </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{% static 'js/dropdown.js' %}"></script>
+
+  </body>
+</html>

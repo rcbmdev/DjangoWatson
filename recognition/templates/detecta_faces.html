@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <h2 class="text-center">Visual Recognition - Detecta Faces</h2>
+    <form method="POST" action="{% url 'detecta_faces' %}" enctype="multipart/form-data">
+
+        {% csrf_token %}
+         Image:
+        <br/>
+        <input type="file" required="required" name="image"/>
+        <br/><br/>
+        <input class="btn btn-primary" type="submit" value="Detect Faces"/>
+    </form>
+    <br/><br/>
+
+    {% if uploaded_file_url %}
+    <div class="row">
+        <div class="col-8">
+            <img src="{{ uploaded_file_url }}" class="img.fluid" height="600" width="700" alt=""/>
+        </div>
+        <div class="col-4">
+            <h3 class="text-center text-muted">Detalhes da Imagem</h3>
+            <p>Faces encontradas {{ facesEncontradas }}</p>
+            {% for face in faces %}
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse_{{ forloop.counter }}">
+                      Pessoa {{ forloop.counter0 }}
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapse_{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                      <p>Idade entre {{ face.age.min }} e {{ face.age.max }}</p>
+                      <p>Sexo: {{face.gender.gender}}</p>
+                  </div>
+                </div>
+              </div>
+        </div>
+            {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

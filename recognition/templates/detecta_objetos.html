@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <h2 class="text-center">Visual Recognition - Detecta Objetos</h2>
+    <form method="POST" action="{% url 'detecta_objetos' %}" enctype="multipart/form-data">
+
+        {% csrf_token %}
+         Image:
+        <br/>
+        <input type="file" required="required" name="image"/>
+        <br/><br/>
+        <input class="btn btn-primary" type="submit" value="Detecta Objetos"/>
+    </form>
+    <br/><br/>
+
+    {% if uploaded_file_url %}
+    <div class="row">
+        <div class="col-8">
+            <img src="{{ uploaded_file_url }}" class="img.fluid" height="600" width="700" alt=""/>
+        </div>
+        <div class="col-4">
+            <h3 class="text-center text-muted">Detalhes da Imagem</h3>
+             {% for objeto in objetos|dictsortreversed:"score"  %}
+                {% if objeto.score >= 0.50 %}
+                     <h3><span class="badge badge-pill badge-success">{{ objeto.class}} - {{ objeto.score|floatformat:2 }} %</span></h3>
+                {% endif %}
+             {% endfor %}
+
+        </div>
+    {% endif %}
+{% endblock %}

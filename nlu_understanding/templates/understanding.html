@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-center">NLP - Compreensão Textual (Idioma - Inglês)</h2>
+    <div class="row">
+        <div class="col-6">
+          <form method="POST" action="{% url 'understanding' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+              <label for="comment">Texto:</label>
+              <textarea name="text" class="form-control" required="required"  rows="7" id="comment">{{ text }}</textarea>
+                <br/>
+             <input class="btn btn-primary" type="submit" value="Processar"/>
+          </form>
+        </div>
+
+
+        <br/>
+
+      <div class="col-6">
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="#sentimento" role="tab" data-toggle="tab">Sentimento</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#keywords" role="tab" data-toggle="tab">Palavras Chaves</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#emotion" role="tab" data-toggle="tab">Emoções</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#entities" role="tab" data-toggle="tab">Entidades</a>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade in active" id="sentimento">
+                  {% if sentiments %}
+                    <h3><span class="badge badge-pill badge-warning">{{ sentiments.label }} - {{ sentiments.score|floatformat:2 }}% </span></h3>
+                  {% endif %}
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="keywords">
+                  {% for keyword in keywords  %}
+                    <h3><span class="badge badge-pill badge-success">{{ keyword.text }} - {{ keyword.relevance|floatformat:2 }}% </span></h3>
+                  {% endfor %}
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="emotion">
+                {% for key, value in emotions.items  %}
+                    <h3><span class="badge badge-pill badge-light">{{ key }} - {{ value|floatformat:2}}% </span></h3>
+                  {% endfor %}
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="entities">
+                  {% for entity in entities  %}
+                    <h3><span class="badge badge-pill badge-success">{{ entity.text }} - {{ entity.type }} - {{ entity.relevance|floatformat:2}}% </span></h3>
+                  {% endfor %}
+              </div>
+            </div>
+      </div>
+    </div>
+
+{% endblock %}
