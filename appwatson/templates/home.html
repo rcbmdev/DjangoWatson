@@ -1,5 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    Homegfdgdf
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">AppCognitive</h1>
+          <p class="lead text-muted">Esta aplicação utiliza APIs do Watson para realizar tarefas como: detecção facial, tradução de idioma, extração de entidades e palavras chaves em texto, etc.</p>
+
+        </div>
+      </section>
+
+      <div class="row">
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Visual Recognition</h5>
+                <p class="card-text">Utilize para detectar faces e objetos em imagens.</p>
+                <a href="{% url 'detecta_objetos' %}" class="btn btn-primary">Vá ao serviço</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">NLU Understanting</h5>
+                <p class="card-text">Extrai entidades, palavras chaves, emoções e sentimento em expressões textuais.</p>
+                <a href="{% url 'understanding' %}" class="btn btn-primary">Vá ao serviço</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Translator</h5>
+                <p class="card-text">Tradução de idioma do português ao inglês ou vice-versa.</p>
+                <a href="{% url 'translator' %}" class="btn btn-primary">Vá ao serviço</a>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+    </main>
 {% endblock %}
