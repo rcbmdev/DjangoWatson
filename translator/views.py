@@ -2,6 +2,8 @@ from django.shortcuts import render
 import json
 from watson_developer_cloud import LanguageTranslatorV3
 
+API_KEY = ''
+
 # Create your views here.
 def translator(request):
     if request.method == 'POST':
@@ -10,13 +12,11 @@ def translator(request):
                 version='2018-05-01',
                 ### url is optional, and defaults to the URL below. Use the correct URL for your region.
                 # url='https://gateway.watsonplatform.net/language-translator/api',
-                iam_apikey='n1gg_-fGcX-ztR2US_e2ABX8lMLkjZltmH2KVT5rGxkt')
+                iam_apikey=API_KEY)
 
             texto = request.POST['text']
             opcao = request.POST['optradio']
 
-            #print(opcao)
-            ## Translate
             translation = language_translator.translate(
                 text=texto,
                 model_id=opcao).get_result()

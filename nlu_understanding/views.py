@@ -3,6 +3,9 @@ import json
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
 
+USERNAME = ''
+PASSWORD = ''
+
 # Create your views here.
 def understanding(request):
     if request.method == 'POST':
@@ -11,8 +14,8 @@ def understanding(request):
                 version='2018-03-16',
                 ## url is optional, and defaults to the URL below. Use the correct URL for your region.
                 # url='https://gateway.watsonplatform.net/natural-language-understanding/api',
-                username='2e37f4ae-1ee1-4fd4-a02a-796be1eb7f5a',
-                password='4l00fMqeeoMz')
+                username=USERNAME,
+                password=PASSWORD)
             text = request.POST['text']
 
             dados = service.analyze(
