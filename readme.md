@@ -39,3 +39,7 @@ easy_install --upgrade watson-developer-cloud
 Para executar a aplicação, navegue até o diretório djangowatson pelo prompt de comando e execute o comando:
 
 python manage.py runserver
+
+Segue uma demonstração da Aplicação:
+
+![](AppCognitive.gif)
